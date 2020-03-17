@@ -5,6 +5,7 @@ import AllWorks from './AllWorks'
 import AllNews from './AllNews'
 import AllAbout from './AllAbout'
 import AllAfterCare from './AllAfterCare'
+import AllContacts from './AllContacts'
 import '../index.css'
 
 class Dashboard extends React.Component {
@@ -13,7 +14,8 @@ class Dashboard extends React.Component {
         works: [],
         news: [],
         about: [],
-        care: []
+        care: [],
+        contacts: []
 
     }
     
@@ -31,6 +33,10 @@ class Dashboard extends React.Component {
 
     renderAllAfterCare = () =>{
         return this.state.care.map(care => <AllAfterCare hideModal={this.props.hideModal} showModal={this.props.showModal} care={care} title={care.title} description={care.description} description2={care.description2} description3={care.description3}/>)
+    }
+
+    renderAllContacts = () =>{
+        return this.state.contacts.map(contact => <AllContacts hideModal={this.props.hideModal} showModal={this.props.showModal} contact={contact} title={contact.title} description={contact.description}/>)
     }
 
     componentDidMount(){
@@ -53,7 +59,12 @@ class Dashboard extends React.Component {
         API.getAfterCare()
         .then(data => this.setState({
             care: data.care
-        }))  
+        })) 
+        
+        API.getContacts()
+        .then(data => this.setState({
+            contacts: data.contacts
+        })) 
     }
 
 
@@ -67,11 +78,10 @@ class Dashboard extends React.Component {
                 <div>
                     <h2 className="text-center">All Work</h2>
                     <table>
-                        <tr className="text-left">
-                            <th className="text-left">URL</th>
-                            <th className="text-left">Thumbnail</th>
-                            <th className="text-left">Edit</th>
-                        </tr>
+                        <th className="text-left">URL</th>
+                        <th className="text-left">Thumbnail</th>
+                        <th className="text-left">Edit</th>
+                        <th className="text-left">Delete</th>
                         {this.renderAllwork()}
                     </table>
                 </div>
@@ -79,12 +89,11 @@ class Dashboard extends React.Component {
                 <div>
                     <h2 className="text-center">All News</h2>
                     <table>
-                        <tr className="text-left">
-                            <th className="text-left">Title</th>
-                            <th className="text-left">Description</th>
-                            <th className="text-left">Thumbnail</th>
-                            <th className="text-left">Edit</th>
-                        </tr>
+                        <th className="text-left">Title</th>
+                        <th className="text-left">Description</th>
+                        <th className="text-left">Thumbnail</th>
+                        <th className="text-left">Edit</th>
+                        <th className="text-left">Delete</th>
                         {this.renderAllNews()}
                     </table>
                 </div>
@@ -92,14 +101,13 @@ class Dashboard extends React.Component {
                 <div>
                     <h2 className="text-center">All About</h2>
                     <table>
-                        <tr className="text-left">
-                            <th className="text-left">Title</th>
-                            <th className="text-left">Paragraph</th>
-                            <th className="text-left">Paragraph 2</th>
-                            <th className="text-left">Paragraph 3</th>
-                            <th className="text-left">Thumbnail</th>
-                            <th className="text-left">Edit</th>
-                        </tr>
+                        <th className="text-left">Title</th>
+                        <th className="text-left">Paragraph</th>
+                        <th className="text-left">Paragraph 2</th>
+                        <th className="text-left">Paragraph 3</th>
+                        <th className="text-left">Thumbnail</th>
+                        <th className="text-left">Edit</th>
+                        <th className="text-left">Delete</th>
                         {this.renderAllAbout()}
                     </table>
                 </div>
@@ -107,14 +115,23 @@ class Dashboard extends React.Component {
                 <div>
                     <h2 className="text-center">All After Care</h2>
                     <table>
-                        <tr className="text-left">
-                            <th className="text-left">Title</th>
-                            <th className="text-left">Paragraph</th>
-                            <th className="text-left">Paragraph 2</th>
-                            <th className="text-left">Paragraph 3</th>
-                            <th className="text-left">Edit</th>
-                        </tr>
+                        <th className="text-left">Title</th>
+                        <th className="text-left">Paragraph</th>
+                        <th className="text-left">Paragraph 2</th>
+                        <th className="text-left">Paragraph 3</th>
+                        <th className="text-left">Edit</th>
+                        <th className="text-left">Delete</th>
                         {this.renderAllAfterCare()}
+                    </table>
+                </div>
+
+                <div>
+                    <h2 className="text-center">All Contacts</h2>
+                    <table>
+                        <th className="text-left">Title</th>
+                        <th className="text-left">Paragraph</th>
+                        <th className="text-left">Delete</th>
+                        {this.renderAllContacts()}
                     </table>
                 </div>
 

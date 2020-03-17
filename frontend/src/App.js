@@ -25,7 +25,6 @@ class App extends React.Component {
 
   showModal = () => {
       this.setState({modal: true})
-      // console.log(this.state)
   }
 
   hideModal = () => {
@@ -55,10 +54,10 @@ class App extends React.Component {
         <Route exact path="/admin/add-work" component={() => (this.state.modal && <WorkForm show={this.state.modal} handleClose={this.hideModal}/>)} />
         <Route exact path="/admin/add-about" component={() => (this.state.modal && <AboutMeForm show={this.state.modal} handleClose={this.hideModal}/>)} />
         <Route exact path="/admin/add-aftercare" component={() => (this.state.modal && <AfterCareForm show={this.state.modal} handleClose={this.hideModal}/>)} />
-        <Route exact path="/admin/edit-aftercare" component={() => (this.state.modal && <EditAfterCare show={this.state.modal} handleClose={this.hideModal}/>)} />
-        {/* <Route exact path="/admin/edit-works" component={() => (this.state.modal && <EditWorks show={this.state.modal} handleClose={this.hideModal}/>)} /> */}
-        <Route exact path="/admin/edit-news/:id" component={() => <EditNews  show={this.state.modal} handleClose={this.hideModal}/>} />
-        <Route exact path="/admin/edit-about" component={() => (this.state.modal && <EditAbout show={this.state.modal} handleClose={this.hideModal}/>)} />
+        <Route exact path="/admin/edit-aftercare/:id" component={(props) => (this.state.modal && <EditAfterCare {...props} show={this.state.modal} handleClose={this.hideModal}/>)} />
+        <Route exact path="/admin/edit-works/:id" component={(props) => (this.state.modal && <EditWorks {...props} show={this.state.modal} handleClose={this.hideModal}/>)} />
+        <Route exact path="/admin/edit-news/:id" component={(props) => <EditNews {...props} show={this.state.modal} handleClose={this.hideModal}/>} />
+        <Route exact path="/admin/edit-about/:id" component={(props) => (this.state.modal && <EditAbout {...props} show={this.state.modal} handleClose={this.hideModal}/>)} />
         <Route exact path="/admin" component={() => <Dashboard showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal} />} />
       </Fragment>
      );

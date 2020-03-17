@@ -26,8 +26,6 @@ class AboutMe extends React.Component {
                 <p>{care.description}</p>
                 <p>{care.description2}</p>
                 <p>{care.description3}</p>
-                <button>Edit</button>
-                {/* <img alt="" src={care.image_url}/> */}
             </div>
         )
       }

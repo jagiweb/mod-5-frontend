@@ -30,7 +30,7 @@ class AfterCareForm extends React.Component {
         return ( 
             
           <div>
-            <h3>Update AfterCare</h3>
+            <h3>Create AfterCare</h3>
             <form onSubmit={this.handleSubmit}>
                 <br/>
                 <label>Title: </label>

@@ -1,17 +1,43 @@
-// Define the URLs for our different routes
+// BASE URL //
 const baseURL = "http://localhost:3001"
+// WORKS URLS //
 const allWorkURL = `${baseURL}/all_work`
+const workPostURL = `${baseURL}/post_work`
+const workPatchURL = `${baseURL}/admin/edit-works/`
+const workDestroyURL = `${baseURL}/admin/delete-works/`
+// NEWS URLS //
 const allNewsURL = `${baseURL}/all_news`
+const newsPostURL = `${baseURL}/post_news`
+const newsPatchURL = `${baseURL}/admin/edit-news/`
+const newsDestroyURL = `${baseURL}/admin/delete-news/`
+// ABOUT URLS //
 const allAboutURL = `${baseURL}/all_about`
+const AboutPostURL = `${baseURL}/post_about`
+const aboutPatchURL = `${baseURL}/admin/edit-about/`
+const aboutDestroyURL = `${baseURL}/admin/delete-about/`
+// AFTER CARE URLS //
 const allAfterCareURL = `${baseURL}/all_care`
+const AfterCareURL = `${baseURL}/post_care`
+const afterCarePatchURL = `${baseURL}/admin/edit-aftercare/`
+const afterCareDestroyURL = `${baseURL}/admin/delete-aftercare/`
+// CONTACTS URLS //
+const allContactsURL = `${baseURL}/all_contacts`
+const ContactsPostURL = `${baseURL}/post_contacts`
+const ContactsDestroyURL = `${baseURL}/admin/delete-contacts/`
+// SIGN IN AND VALIDATION URLS //
 const signInURL = `${baseURL}/admin/signin`
 const validateURL = `${baseURL}/validate`
-const workPostURL = `${baseURL}/post_work`
-const newsPostURL = `${baseURL}/post_news`
-const AfterCareURL = `${baseURL}/post_news`
-const AboutPostURL = `${baseURL}/post_about`
 
-// // Make a post request to a given URL with a given data object as the body and return the Promise
+//////// DELETE REQUEST //////
+
+const destroy = (url, id) => {
+  const configurationObject={
+    method: "DELETE"
+  }
+  return fetch(`${url}/${id}`, configurationObject)
+}
+
+ //////  JSON POST    ///////
 const post = (url, object) => {
   const configurationObject = {
     method: "POST",
@@ -24,7 +50,7 @@ const post = (url, object) => {
   return fetch(url, configurationObject)
 }
 
- /// Post request to send pictures plus other things /// 
+/////// POST WITH PICTURE ///////
 
 const postWithPicture = (url, object) => {
   const configurationObject = {
@@ -35,19 +61,18 @@ const postWithPicture = (url, object) => {
   return fetch(url, configurationObject)
 }
 
-// const patch = (url, id, object) => {
-//     const configurationObject = {
-//       method: "PATCH",
-//       headers: {
-//         "Accept": "application/json",
-//         "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify(object)
-//     }
-//     return fetch(`${url}/${id}`, configurationObject)
-//   }
+///// PATCH WITH PICTURE /////////
 
-// Make a get request to a given URL and return the Promise. If a token has been provided, include it as a header called Authorization
+const patch = (url, id, object) => {
+    const configurationObject = {
+      method: "PATCH",
+      headers: {},
+      body: object
+    }
+    return fetch(`${url}/${id}`, configurationObject)
+  }
+
+/////// GET REQUEST WITH TOKEN /////
 const get = (url, token) => {
   return token ? fetch(url, { headers: { AUTHORIZATION: token } }) : fetch(url)
 }
@@ -62,50 +87,73 @@ const signIn = data => {
     return post(signInURL, data).then(response => response.json())
 }
 
-const workPost = data => {
-  return postWithPicture(workPostURL, data).then(resp => resp.json())
-}
-
-const newsPost = data => {
-  return postWithPicture(newsPostURL, data).then(resp => resp.json())
-}
-
-const aboutPost = data => {
-  return postWithPicture(AboutPostURL, data).then(resp => resp.json())
-}
-
-const afterCarePost = data => {
-  return post(AfterCareURL, data).then(response => response.json())
-}
-// const signUp = data => {
-//     return post(signUpURL, data).then(response => response.json())
-// }
-
-// const EditProfile = (data, id) => {
-//   return patch(editURL, id, data).then(response => response.json())
-// }
-// Use the get function to make a request to the items route and parse the response into JSON
+////////////////// WORKS //////////////////
 const getWorks = () => {
   return get(allWorkURL).then(response => response.json())
 }
+const workPost = data => {
+  return postWithPicture(workPostURL, data).then(resp => resp.json())
+}
+const workPatch = (data, id) => {
+  return patch(workPatchURL, id, data).then(response => response.json())
+}
+const workDelete = id => {
+  return destroy(workDestroyURL, id).then(resp => resp.json())
+}
 
+////////////////// NEWS ///////////////////
 const getNews = () => {
   return get(allNewsURL).then(response => response.json())
 }
+const newsPost = data => {
+  return postWithPicture(newsPostURL, data).then(resp => resp.json())
+}
+const newsPatch = (data, id) => {
+  return patch(newsPatchURL, id, data).then(response => response.json())
+}
+const newsDelete = id => {
+  return destroy(newsDestroyURL, id).then(resp => resp.json())
+}
 
+/////////////////// ABOUT /////////////////
 const getAbout = () => {
   return get(allAboutURL).then(response => response.json())
 }
+const aboutPost = data => {
+  return postWithPicture(AboutPostURL, data).then(resp => resp.json())
+}
+const aboutPatch = (data, id) => {
+  return patch(aboutPatchURL, id, data).then(response => response.json())
+}
+const aboutDelete = id => {
+  return destroy(aboutDestroyURL, id).then(resp => resp.json())
+}
 
+////////////////// AFTER CARE ////////////////
 const getAfterCare = () => {
   return get(allAfterCareURL).then(response => response.json())
 }
-// const getMorePictures = (num, token) => {
-//   return get(`https://pixabay.com/api/?key=15410961-50b6ae9ee64c3859d407a7eaa&q=nature&image_type=photo&pretty=true&per_page=${num}`, token).then(response => response.json())
-// }
+const afterCarePost = data => {
+  return post(AfterCareURL, data).then(response => response.json())
+}
+const afterCarePatch = (data, id) => {
+  return patch(afterCarePatchURL, id, data).then(response => response.json())
+}
+const afterCareDelete = id => {
+  return destroy(afterCareDestroyURL, id).then(resp => resp.json())
+}
 
-// Export the necessary functions as part of one object which we will import elsewhere
-// export default { signIn, validate, getPictures }
+////////////////// CONTACTS  ////////////////
+const getContacts = () => {
+  return get(allContactsURL).then(response => response.json())
+}
+const contactsPost = data => {
+  return post(ContactsPostURL, data).then(response => response.json())
+}
+const contactsDelete = id => {
+  return destroy(ContactsDestroyURL, id).then(resp => resp.json())
+}
+
 export default {
   signIn, 
   validate, 
@@ -116,5 +164,16 @@ export default {
   getWorks, 
   getNews, 
   getAbout, 
-  getAfterCare
+  getAfterCare,
+  workPatch,
+  workDelete,
+  newsPatch,
+  newsDelete,
+  aboutPatch,
+  aboutDelete,
+  afterCarePatch,
+  afterCareDelete,
+  getContacts,
+  contactsPost,
+  contactsDelete
 }
