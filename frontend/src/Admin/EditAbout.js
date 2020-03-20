@@ -6,7 +6,11 @@ class EditAbout extends React.Component {
     constructor() {
         super();
         this.state = { 
-            about: null
+            about: null,
+            title: "",
+            description: "",
+            description2: "",
+            description3: ""
          }
     }
 
@@ -32,7 +36,11 @@ class EditAbout extends React.Component {
         fetch(URL)
         .then(resp => resp.json())
         .then(data => this.setState({
-            about: data.about
+            about: data.about,
+            title: data.about.title,
+            description: data.about.description,
+            description2: data.about.description2,
+            description3: data.about.description3
         }))
     }
     render() { 

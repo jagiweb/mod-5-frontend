@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react';
+import Carousel from './Carousel'
+import Intro from './Intro'
 import NavBar from '../NavBar/NavBar'
 import AboutMe from '../About/AboutMe'
 import News from '../News/News'
@@ -18,11 +20,13 @@ class Home extends React.Component {
         return ( 
             <Fragment>
                 <NavBar/>
+                <Carousel/>
+                <Intro/>
                 <AboutMe/>
                 <News/>
                 <Work/>
                 <AfterCare/>
-                <Contact/>
+                <Contact showModal={this.props.showModal} show={this.props.show} hideModal={this.props.hideModal}/>
                 <Footer/>
             </Fragment>
          );

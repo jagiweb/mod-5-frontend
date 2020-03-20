@@ -13,15 +13,22 @@ class AllContacts extends React.Component {
         API.contactDelete(contact.id)
             .then(data => console.log(data))
     }
+
+    deleteContacts = () =>{
+        const {contact} = this.props
+        API.contactsDelete(contact.id)
+            .then(data => console.log(data))
+    }
     
     render() { 
-        const {title, image, description} = this.props
+        const {name, email, telephone, description} = this.props
         return ( 
                 <tr>
-                    <td><p>{title}</p></td>
+                    <td><p>{name}</p></td>
+                    <td><p>{email}</p></td>
+                    <td><p>{telephone}</p></td>
                     <td><p>{description}</p></td>
-                    <td><img className="thumbnail" alt={image} src={image}/></td>
-                    <td><button onClick={() => this.deleteNews()}>Delete</button></td>
+                    <td><button onClick={() => this.deleteContacts()}>Delete</button></td>
                 </tr>        
          );
     }

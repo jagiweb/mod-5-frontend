@@ -21,21 +21,28 @@ class AboutMe extends React.Component {
     
       renderWorks = () => {
         return this.state.allAbout.map(about => 
-            <div key={about.id}>
+          <div className="row">
+            <div className="col-md-6 col-lg-6">
+                <img className="about-img mb-50" key={about.id} alt="" src={about.image_url}/>
+            </div>
+            <div className="col-md-6 col-lg-6 text-center mb-50">
                 <h3 key={about.id}>{about.title}</h3>
                 <p key={about.id}>{about.description}</p>
                 <p key={about.id}>{about.description2}</p>
                 <p key={about.id}>{about.description3}</p>
-                <img key={about.id} alt="" src={about.image_url}/>
             </div>
+          </div>
         )
       }
     
       render() { 
         return ( 
-            <div>
-                <h1>About me</h1>
+            <div id="about" className="about">
+              <div className="container">
+                <h1 className="text-center mt-150 mb-50">About me</h1>
                 {this.renderWorks()}
+              </div>
+                
             </div>
             
          );

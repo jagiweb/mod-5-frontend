@@ -22,19 +22,27 @@ class News extends React.Component {
 
   renderNews = () => {
   return this.state.allNews.map(news => 
-    <div key={news.id}>
+    <div className="row" key={news.id}>
+      <div className="col-md-4 col-lg-4 mb-50">
+        <img className="news-img" key={news.id} alt="" src={news.image_url}/>
+      </div>
+      <div className="col-md-8 col-lg-8 text-center mb-50">
         <h3 key={news.id}>{news.title}</h3>
-        <img key={news.id} alt="" src={news.image_url}/>
         <p key={news.id}>{news.description}</p> 
+      </div>
+        
     </div>
   )
   }
 
   render() { 
     return ( 
-        <div>
-            <h1>All News</h1>
+        <div id="news" className="news">
+          <div className="container">
+          <h1 className="text-center mt-150 mb-50">All News</h1>
             {this.renderNews()}
+          </div>
+            
         </div>
         
      );

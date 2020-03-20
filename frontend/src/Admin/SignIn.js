@@ -1,5 +1,6 @@
 import React from 'react'
 import API from '../API'
+// import {Link} from 'react-router-dom'
 
 class SignIn extends React.Component {
     constructor() {
@@ -22,17 +23,9 @@ class SignIn extends React.Component {
           .then(json => this.props.signIn(json.username, json.token, json.user))
     }
 
-    signOut = () => {
-		this.setState({
-			username: null
-		});
-		localStorage.removeItem('token');
-	};
+    
   
     render() {
-  
-      // const showHideModal = this.props.modal ? 'modal display-block' : 'modal display-none'
-  
       return (
               <div className="modal-main modal--change">
                   <form onSubmit={this.handleSubmit}>
@@ -43,11 +36,12 @@ class SignIn extends React.Component {
                       <label>Password:</label>
                       <input type="password" name="password" onChange={this.handleChange} />
                       <br />
-  
+                      {/* <button type="submit"><Link to="/admin" >SignIn</Link></button> */}
+                      
                       <input type="submit" value="Sign In" />
                   </form>
                   <div>
-						<button onClick={this.signOut}>Log Out</button>
+					
 				  </div>
               </div>
           );

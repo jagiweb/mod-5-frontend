@@ -12,6 +12,7 @@ import EditAbout from './Admin/EditAbout'
 import EditWorks from './Admin/EditWorks'
 import EditNews from './Admin/EditNews'
 import Dashboard from './Admin/Dashboard';
+import ContactForm from './Contact/ContactForm'
 
 
 class App extends React.Component {
@@ -19,7 +20,10 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = { 
-        modal: false
+        modal: false, 
+        user: null,
+        username: "",
+        token: null
      }
   }
 
@@ -35,20 +39,31 @@ class App extends React.Component {
   signIn = (username, token, user) => {
     console.log(user)
     this.setState({
-        username,
-        user
+      username: username,
+      user: user,
+      token: token
     })
     localStorage.token = token
 
 }
 
+signOut = () => {
+  this.setState({
+    username: null
+  });
+  localStorage.removeItem('token');
+};
+
 
 
   render() { 
-    // console.log(this.state)
+    console.log(this.state)
     return ( 
       <Fragment>
-        <Route exact path="/" component={() => <Home/>}/>
+        {
+          localStorage.token ?  <Route exact path="/admin" component={() => <Dashboard signOut={this.signOut} showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal} />} /> : null
+        }
+        <Route exact path="/" component={() => <Home showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal}/>}/>
         <Route exact path="/admin/signin" component={() => <SignIn signIn={this.signIn}/>}/>
         <Route exact path="/admin/add-news" component={() => (this.state.modal && <NewsForm show={this.state.modal} handleClose={this.hideModal}/>)} />
         <Route exact path="/admin/add-work" component={() => (this.state.modal && <WorkForm show={this.state.modal} handleClose={this.hideModal}/>)} />
@@ -58,7 +73,8 @@ class App extends React.Component {
         <Route exact path="/admin/edit-works/:id" component={(props) => (this.state.modal && <EditWorks {...props} show={this.state.modal} handleClose={this.hideModal}/>)} />
         <Route exact path="/admin/edit-news/:id" component={(props) => <EditNews {...props} show={this.state.modal} handleClose={this.hideModal}/>} />
         <Route exact path="/admin/edit-about/:id" component={(props) => (this.state.modal && <EditAbout {...props} show={this.state.modal} handleClose={this.hideModal}/>)} />
-        <Route exact path="/admin" component={() => <Dashboard showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal} />} />
+        {/* <Route exact path="/admin" component={() => <Dashboard showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal} />} /> */}
+        <Route exact path="/" component={() => (this.state.modal && <ContactForm showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal} />)} />
       </Fragment>
      );
   }

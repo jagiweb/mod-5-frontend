@@ -7,6 +7,7 @@ import AllAbout from './AllAbout'
 import AllAfterCare from './AllAfterCare'
 import AllContacts from './AllContacts'
 import '../index.css'
+import './admin.css'
 
 class Dashboard extends React.Component {
 
@@ -36,7 +37,7 @@ class Dashboard extends React.Component {
     }
 
     renderAllContacts = () =>{
-        return this.state.contacts.map(contact => <AllContacts hideModal={this.props.hideModal} showModal={this.props.showModal} contact={contact} title={contact.title} description={contact.description}/>)
+        return this.state.contacts.map(contact => <AllContacts hideModal={this.props.hideModal} showModal={this.props.showModal} contact={contact} name={contact.name} description={contact.description} email={contact.email}/>)
     }
 
     componentDidMount(){
@@ -71,71 +72,77 @@ class Dashboard extends React.Component {
     render() { 
         return ( 
             <Fragment>
-                <Link to="/admin/add-work" onClick={this.props.showModal} >Add Work</Link>
-                <Link to="/admin/add-news" onClick={this.props.showModal} >Add News</Link>
-                <Link to="/admin/add-about" onClick={this.props.showModal} >Add About</Link>
-                <Link to="/admin/add-aftercare" onClick={this.props.showModal} >Add AfterCare</Link>
-                <div>
-                    <h2 className="text-center">All Work</h2>
-                    <table>
-                        <th className="text-left">URL</th>
-                        <th className="text-left">Thumbnail</th>
-                        <th className="text-left">Edit</th>
-                        <th className="text-left">Delete</th>
-                        {this.renderAllwork()}
-                    </table>
-                </div>
+                <div className="container">
+                    <Link to="/admin/add-work" className="btn btn-labeled btn-success" onClick={this.props.showModal} ><span className="btn-label"><i className="icon-image"></i></span>Add Work</Link>
+                    <Link to="/admin/add-news" onClick={this.props.showModal} >Add News</Link>
+                    <Link to="/admin/add-about" onClick={this.props.showModal} >Add About</Link>
+                    <Link to="/admin/add-aftercare" onClick={this.props.showModal} >Add AfterCare</Link>
+                    -
+                    -
+                    <Link to="/" onClick={this.props.signOut}>Log Out</Link>
+                    <div>
+                        <h2 className="text-center">All Work</h2>
+                        <table>
+                            <th className="text-left">URL</th>
+                            <th className="text-left">Thumbnail</th>
+                            <th className="text-left">Edit</th>
+                            <th className="text-left">Delete</th>
+                            {this.renderAllwork()}
+                        </table>
+                    </div>
 
-                <div>
-                    <h2 className="text-center">All News</h2>
-                    <table>
-                        <th className="text-left">Title</th>
-                        <th className="text-left">Description</th>
-                        <th className="text-left">Thumbnail</th>
-                        <th className="text-left">Edit</th>
-                        <th className="text-left">Delete</th>
-                        {this.renderAllNews()}
-                    </table>
-                </div>
+                    <div>
+                        <h2 className="text-center">All News</h2>
+                        <table>
+                            <th className="text-left">Title</th>
+                            <th className="text-left">Description</th>
+                            <th className="text-left">Thumbnail</th>
+                            <th className="text-left">Edit</th>
+                            <th className="text-left">Delete</th>
+                            {this.renderAllNews()}
+                        </table>
+                    </div>
 
-                <div>
-                    <h2 className="text-center">All About</h2>
-                    <table>
-                        <th className="text-left">Title</th>
-                        <th className="text-left">Paragraph</th>
-                        <th className="text-left">Paragraph 2</th>
-                        <th className="text-left">Paragraph 3</th>
-                        <th className="text-left">Thumbnail</th>
-                        <th className="text-left">Edit</th>
-                        <th className="text-left">Delete</th>
-                        {this.renderAllAbout()}
-                    </table>
-                </div>
+                    <div>
+                        <h2 className="text-center">All About</h2>
+                        <table>
+                            <th className="text-left">Title</th>
+                            <th className="text-left">Paragraph</th>
+                            <th className="text-left">Paragraph 2</th>
+                            <th className="text-left">Paragraph 3</th>
+                            <th className="text-left">Thumbnail</th>
+                            <th className="text-left">Edit</th>
+                            <th className="text-left">Delete</th>
+                            {this.renderAllAbout()}
+                        </table>
+                    </div>
 
-                <div>
-                    <h2 className="text-center">All After Care</h2>
-                    <table>
-                        <th className="text-left">Title</th>
-                        <th className="text-left">Paragraph</th>
-                        <th className="text-left">Paragraph 2</th>
-                        <th className="text-left">Paragraph 3</th>
-                        <th className="text-left">Edit</th>
-                        <th className="text-left">Delete</th>
-                        {this.renderAllAfterCare()}
-                    </table>
-                </div>
+                    <div>
+                        <h2 className="text-center">All After Care</h2>
+                        <table>
+                            <th className="text-left">Title</th>
+                            <th className="text-left">Paragraph</th>
+                            <th className="text-left">Paragraph 2</th>
+                            <th className="text-left">Paragraph 3</th>
+                            <th className="text-left">Edit</th>
+                            <th className="text-left">Delete</th>
+                            {this.renderAllAfterCare()}
+                        </table>
+                    </div>
 
-                <div>
-                    <h2 className="text-center">All Contacts</h2>
-                    <table>
-                        <th className="text-left">Title</th>
-                        <th className="text-left">Paragraph</th>
-                        <th className="text-left">Delete</th>
-                        {this.renderAllContacts()}
-                    </table>
-                </div>
+                    <div>
+                        <h2 className="text-center">All Contacts</h2>
+                        <table>
+                            <th className="text-left">Name</th>
+                            <th className="text-left">Email</th>
+                            <th className="text-left">Telephone</th>
+                            <th className="text-left">Description</th>
+                            <th className="text-left">Delete</th>
+                            {this.renderAllContacts()}
+                        </table>
+                    </div>
 
-                
+                </div>
             </Fragment>
         );
     }
