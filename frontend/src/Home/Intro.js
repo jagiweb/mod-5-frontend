@@ -8,8 +8,8 @@ class Intro extends React.Component {
                 <section class="rw-wrapper">
                     <h2 class="rw-sentence m-top">
                         {/* <span>Welcome to</span> */}
-                        <span>I am </span>
-                        <div class="rw-words rw-words-1">
+                        <span className="font-sacramento">I am </span>
+                        <div class="font-sacramento rw-words rw-words-1">
                             <span>Sharnie Pilar</span>
                             <span>a designer</span>
                             <span>an Artist</span>

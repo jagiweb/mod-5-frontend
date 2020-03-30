@@ -26,10 +26,10 @@ class AboutMe extends React.Component {
                 <img className="about-img mb-50" key={about.id} alt="" src={about.image_url}/>
             </div>
             <div className="col-md-6 col-lg-6 text-center mb-50">
-                <h3 key={about.id}>{about.title}</h3>
-                <p key={about.id}>{about.description}</p>
-                <p key={about.id}>{about.description2}</p>
-                <p key={about.id}>{about.description3}</p>
+                <h3 className="font-vibes font-40" key={about.id}>{about.title}</h3>
+                <p className="font-viadora" key={about.id}>{about.description}</p>
+                <p className="font-viadora" key={about.id}>{about.description2}</p>
+                <p className="font-viadora" key={about.id}>{about.description3}</p>
             </div>
           </div>
         )
@@ -39,7 +39,8 @@ class AboutMe extends React.Component {
         return ( 
             <div id="about" className="about">
               <div className="container">
-                <h1 className="text-center mt-150 mb-50">About me</h1>
+                <h1 className="text-center mt-150 font-sacramento text-60">About me</h1>
+                <hr className="mb-50"/>
                 {this.renderWorks()}
               </div>
                 

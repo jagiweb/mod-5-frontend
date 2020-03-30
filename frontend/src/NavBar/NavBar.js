@@ -35,7 +35,9 @@ class NavBar extends React.Component {
                             <li className="nav-item">
                                 <a className="nav-link text-white" href="#contact">Contact Me</a>
                             </li>
-                            
+                            {localStorage.token ? <li className="nav-item">
+                                <a className="nav-link text-white" href="/admin">Admin Panel</a>
+                            </li> : null}
                             </ul>
                         </div>
                     </nav>                   

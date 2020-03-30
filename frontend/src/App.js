@@ -13,7 +13,10 @@ import EditWorks from './Admin/EditWorks'
 import EditNews from './Admin/EditNews'
 import Dashboard from './Admin/Dashboard';
 import ContactForm from './Contact/ContactForm'
-
+import Work from './Work/Work'
+import News from './News/News'
+const AllWorkURL = 'http://localhost:3001/all_work'
+const AllNewsURL = 'http://localhost:3001/all_news'
 
 class App extends React.Component {
 
@@ -23,7 +26,9 @@ class App extends React.Component {
         modal: false, 
         user: null,
         username: "",
-        token: null
+        token: null,
+        allWorks: [],
+        allNews: []
      }
   }
 
@@ -54,17 +59,40 @@ signOut = () => {
   localStorage.removeItem('token');
 };
 
+componentDidMount(){
+
+  fetch(AllWorkURL)
+    .then(resp => resp.json())
+    .then(data => this.setState({
+        allWorks: data.works
+    }))
+
+  fetch(AllNewsURL)
+  .then(resp => resp.json())
+  .then(data => this.setState({
+      allNews: data.news
+  }))
+
+  }
+  renderWorks = () => {
+    return this.state.allWorks.map(work => 
+          <Work image_url={work.image_url}/>  
+    )
+  }
+  
+  renderNews = () => {
+    return this.state.allNews.map(news => <News news={news}/>)
+  }
 
 
   render() { 
     console.log(this.state)
     return ( 
       <Fragment>
-        {
-          localStorage.token ?  <Route exact path="/admin" component={() => <Dashboard signOut={this.signOut} showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal} />} /> : null
-        }
-        <Route exact path="/" component={() => <Home showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal}/>}/>
-        <Route exact path="/admin/signin" component={() => <SignIn signIn={this.signIn}/>}/>
+        
+        {localStorage.token ?  <Route exact path="/admin" component={() => <Dashboard signOut={this.signOut} showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal} />} /> : null}
+        <Route exact path="/" component={() => <Home renderNews={this.renderNews} renderWorks={this.renderWorks} showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal}/>}/>
+        {localStorage.token ? null : <Route exact path="/admin/signin" component={() => <SignIn signIn={this.signIn}/>}/>}
         <Route exact path="/admin/add-news" component={() => (this.state.modal && <NewsForm show={this.state.modal} handleClose={this.hideModal}/>)} />
         <Route exact path="/admin/add-work" component={() => (this.state.modal && <WorkForm show={this.state.modal} handleClose={this.hideModal}/>)} />
         <Route exact path="/admin/add-about" component={() => (this.state.modal && <AboutMeForm show={this.state.modal} handleClose={this.hideModal}/>)} />

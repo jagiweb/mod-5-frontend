@@ -1,52 +1,43 @@
 import React from 'react';
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
 
-const AllNewsURL = 'http://localhost:3001/all_news'
-
-class News extends React.Component {
-  constructor() {
-    super();
-    this.state = { 
-      allNews: []
-     }
-  }
-
-  componentDidMount(){
-
-  fetch(AllNewsURL)
-    .then(resp => resp.json())
-    .then(data => this.setState({
-        allNews: data.news
-    }))
-
-  }
-
-  renderNews = () => {
-  return this.state.allNews.map(news => 
-    <div className="row" key={news.id}>
-      <div className="col-md-4 col-lg-4 mb-50">
-        <img className="news-img" key={news.id} alt="" src={news.image_url}/>
-      </div>
-      <div className="col-md-8 col-lg-8 text-center mb-50">
-        <h3 key={news.id}>{news.title}</h3>
-        <p key={news.id}>{news.description}</p> 
-      </div>
-        
-    </div>
-  )
-  }
-
-  render() { 
+function News({news}) {
+  const [show, setShow] = React.useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
     return ( 
-        <div id="news" className="news">
-          <div className="container">
-          <h1 className="text-center mt-150 mb-50">All News</h1>
-            {this.renderNews()}
-          </div>
-            
+          <div>
+            <div className="col-md-4 col-lg-4">
+              <ul class="grid cs-style-2">
+                  <li>
+                    <figure> 
+                        <img key={news.id} alt="" src={news.image_url}/>
+                      <figcaption>
+                        <p>{news.title}</p>
+                        <span></span>
+                        <a onClick={handleShow} href={handleShow}>Take a look</a>
+                      </figcaption>
+                    </figure>
+                  </li>
+              </ul>
+              {/* <p key={news.id}>{news.description}</p>  */}
+            </div>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Body>
+                  {news.title}
+                  <img src={news.image_url}/>
+                  <p>{news.description}</p>
+                  </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleClose}>
+                    Close
+                  </Button>
+                </Modal.Footer>
+              </Modal>
         </div>
         
      );
-  }
 }
  
 export default News;
