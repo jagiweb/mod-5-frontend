@@ -1,19 +1,8 @@
 import React from 'react'
 import '../index.css'
 import { Link } from 'react-router-dom'
-import API from '../API'
 
 class AllWorks extends React.Component {
-    constructor() {
-        super();
-        this.state = { }
-      }
-
-    deleteWork = () =>{
-        const {work} = this.props
-        API.workDelete(work.id)
-            .then(data => console.log(data))
-    }
     
     render() { 
         const {image, work} = this.props
@@ -23,7 +12,7 @@ class AllWorks extends React.Component {
                     <td><p>{image}</p></td>
                     <td><img className="thumbnail" alt={image} src={image}/></td>
                     <td><Link onClick={() => this.props.showModal()} to={URL}>Edit</Link></td>
-                    <td><button onClick={() => this.deleteWork()}>Delete</button></td>
+                    <td><button onClick={() => this.props.deleteWork(work.id)}>Delete</button></td>
                 </tr>
          );
     }

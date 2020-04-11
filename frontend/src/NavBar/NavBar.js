@@ -1,5 +1,6 @@
 import React from 'react';
 import './navbar.css'
+import { Link} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 class NavBar extends React.Component {
     constructor() {
@@ -30,7 +31,7 @@ class NavBar extends React.Component {
                                 <a className="nav-link text-white" href="#work">My Work</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-white" href="#care">After Care</a>
+                                <Link to="/AfterCare" className="nav-link text-white" href="#care">After Care</Link>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link text-white" href="#contact">Contact Me</a>

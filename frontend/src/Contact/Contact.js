@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import GoogleMaps from './GoogleMaps';
 import API from '../API'
 

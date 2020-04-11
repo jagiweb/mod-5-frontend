@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import NavBar from '../NavBar/NavBar'
 const AllCareURL = 'http://localhost:3001/all_care'
 
 class AboutMe extends React.Component {
@@ -32,6 +33,8 @@ class AboutMe extends React.Component {
     
       render() { 
         return ( 
+          <Fragment>
+            <NavBar/>
             <div id="care" className="after-care">
               <div className="container">
                 <h1 className="text-center mt-150 font-sacramento text-60">After Care</h1>
@@ -42,6 +45,8 @@ class AboutMe extends React.Component {
                 <span className="mb-50"></span>
               </div>
             </div>
+          </Fragment>
+            
             
          );
 }

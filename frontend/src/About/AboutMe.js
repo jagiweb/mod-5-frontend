@@ -1,5 +1,5 @@
 import React from 'react';
-const AllAboutURL = 'http://localhost:3001/all_about'
+import API from '../API'
 
 class AboutMe extends React.Component {
     constructor() {
@@ -9,14 +9,11 @@ class AboutMe extends React.Component {
          }
       }
     
-      componentDidMount(){
-    
-      fetch(AllAboutURL)
-        .then(resp => resp.json())
+    componentDidMount(){
+      API.getAbout()
         .then(data => this.setState({
             allAbout: data.about
         }))
-    
       }
     
       renderWorks = () => {

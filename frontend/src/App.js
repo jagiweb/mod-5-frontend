@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import './App.css';
 import Home from './Home/Home'
+import API from './API'
 import SignIn from './Admin/SignIn'
 import { Route} from 'react-router-dom'
 import NewsForm from './News/NewsForm';
@@ -15,8 +16,7 @@ import Dashboard from './Admin/Dashboard';
 import ContactForm from './Contact/ContactForm'
 import Work from './Work/Work'
 import News from './News/News'
-const AllWorkURL = 'http://localhost:3001/all_work'
-const AllNewsURL = 'http://localhost:3001/all_news'
+import AfterCare from './After-Care/AfterCare'
 
 class App extends React.Component {
 
@@ -61,16 +61,14 @@ signOut = () => {
 
 componentDidMount(){
 
-  fetch(AllWorkURL)
-    .then(resp => resp.json())
-    .then(data => this.setState({
-        allWorks: data.works
-    }))
-
-  fetch(AllNewsURL)
-  .then(resp => resp.json())
+  API.getWorks()
   .then(data => this.setState({
-      allNews: data.news
+    allWorks: data.works
+  }))
+
+  API.getNews()
+  .then(data => this.setState({
+    allNews: data.news
   }))
 
   }
@@ -79,9 +77,24 @@ componentDidMount(){
           <Work image_url={work.image_url}/>  
     )
   }
+
+  showFourMore = () => {
+    API.showFourMore()
+      .then(data => this.setState({
+        allWorks: data.works
+      }))
+  }
   
   renderNews = () => {
     return this.state.allNews.map(news => <News news={news}/>)
+  }
+
+  showTwoMore = () => {
+    API.getTwoNews()
+      .then(data => this.setState({
+        allNews: data.news
+      }))
+      // .then(data => console.log(data))
   }
 
 
@@ -91,7 +104,7 @@ componentDidMount(){
       <Fragment>
         
         {localStorage.token ?  <Route exact path="/admin" component={() => <Dashboard signOut={this.signOut} showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal} />} /> : null}
-        <Route exact path="/" component={() => <Home renderNews={this.renderNews} renderWorks={this.renderWorks} showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal}/>}/>
+        <Route exact path="/" component={() => <Home allNews={this.state.allNews} showTwoMore={this.showTwoMore} showFourMore={this.showFourMore} renderNews={this.renderNews} renderWorks={this.renderWorks} showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal}/>}/>
         {localStorage.token ? null : <Route exact path="/admin/signin" component={() => <SignIn signIn={this.signIn}/>}/>}
         <Route exact path="/admin/add-news" component={() => (this.state.modal && <NewsForm show={this.state.modal} handleClose={this.hideModal}/>)} />
         <Route exact path="/admin/add-work" component={() => (this.state.modal && <WorkForm show={this.state.modal} handleClose={this.hideModal}/>)} />
@@ -101,6 +114,7 @@ componentDidMount(){
         <Route exact path="/admin/edit-works/:id" component={(props) => (this.state.modal && <EditWorks {...props} show={this.state.modal} handleClose={this.hideModal}/>)} />
         <Route exact path="/admin/edit-news/:id" component={(props) => <EditNews {...props} show={this.state.modal} handleClose={this.hideModal}/>} />
         <Route exact path="/admin/edit-about/:id" component={(props) => (this.state.modal && <EditAbout {...props} show={this.state.modal} handleClose={this.hideModal}/>)} />
+        <Route exact path="/AfterCare" component={() => <AfterCare/>} />
         {/* <Route exact path="/admin" component={() => <Dashboard showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal} />} /> */}
         <Route exact path="/" component={() => (this.state.modal && <ContactForm showModal={this.showModal} show={this.state.modal} hideModal={this.hideModal} />)} />
       </Fragment>

@@ -4,8 +4,10 @@ class Intro extends React.Component {
 
     render() { 
         return ( 
+            
             <div className="container">
-                <section class="rw-wrapper">
+                <div className="show-mobile"></div>
+                <section class="hide-mobile rw-wrapper">
                     <h2 class="rw-sentence m-top">
                         {/* <span>Welcome to</span> */}
                         <span className="font-sacramento">I am </span>

@@ -5,11 +5,15 @@ const allWorkURL = `${baseURL}/all_work`
 const workPostURL = `${baseURL}/post_work`
 const workPatchURL = `${baseURL}/admin/edit-works/`
 const workDestroyURL = `${baseURL}/admin/delete-works/`
+const showFourMoreURL = `${baseURL}/all_works/showFourMore`
+const allWorksForAdmin = `${baseURL}/all_works_admin`
 // NEWS URLS //
 const allNewsURL = `${baseURL}/all_news`
 const newsPostURL = `${baseURL}/post_news`
 const newsPatchURL = `${baseURL}/admin/edit-news/`
 const newsDestroyURL = `${baseURL}/admin/delete-news/`
+const showFourNewsURL = `${baseURL}/all_news/showFour`
+const allNewsForAdmin = `${baseURL}/all_news_admin`
 // ABOUT URLS //
 const allAboutURL = `${baseURL}/all_about`
 const AboutPostURL = `${baseURL}/post_about`
@@ -91,6 +95,12 @@ const signIn = data => {
 const getWorks = () => {
   return get(allWorkURL).then(response => response.json())
 }
+const getAllWorks = () => {
+  return get(allWorksForAdmin).then(resp => resp.json())
+}
+const showFourMore = () => {
+  return get(showFourMoreURL).then(response => response.json())
+}
 const workPost = data => {
   return postWithPicture(workPostURL, data).then(resp => resp.json())
 }
@@ -104,6 +114,12 @@ const workDelete = id => {
 ////////////////// NEWS ///////////////////
 const getNews = () => {
   return get(allNewsURL).then(response => response.json())
+}
+const getTwoNews = () => {
+  return get(showFourNewsURL).then(resp => resp.json())
+}
+const getAllNews = () => {
+  return get(allNewsForAdmin).then(resp => resp.json())
 }
 const newsPost = data => {
   return postWithPicture(newsPostURL, data).then(resp => resp.json())
@@ -175,5 +191,9 @@ export default {
   afterCareDelete,
   getContacts,
   contactsPost,
-  contactsDelete
+  contactsDelete,
+  showFourMore,
+  getAllWorks,
+  getTwoNews,
+  getAllNews
 }

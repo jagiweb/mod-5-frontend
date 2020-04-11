@@ -11,26 +11,26 @@ function News({news}) {
             <div className="col-md-4 col-lg-4">
               <ul class="grid cs-style-2">
                   <li>
-                    <figure> 
+                    <figure onClick={handleShow} className="works-img"> 
                         <img key={news.id} alt="" src={news.image_url}/>
                       <figcaption>
                         <p>{news.title}</p>
                         <span></span>
-                        <a onClick={handleShow} href={handleShow}>Take a look</a>
+                        <button onClick={handleShow}>Take a look</button>
                       </figcaption>
                     </figure>
                   </li>
               </ul>
               {/* <p key={news.id}>{news.description}</p>  */}
             </div>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Body>
+            <Modal className="modal-work" show={show} onHide={handleClose}>
+                <Modal.Body className="back-ground modal-content">
                   {news.title}
-                  <img src={news.image_url}/>
+                  <img alt="" src={news.image_url}/>
                   <p>{news.description}</p>
                   </Modal.Body>
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
+                  <Button variant="primary" onClick={handleClose}>
                     Close
                   </Button>
                 </Modal.Footer>

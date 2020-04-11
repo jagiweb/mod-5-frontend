@@ -21,23 +21,23 @@ class Dashboard extends React.Component {
     }
     
     renderAllwork = () =>{
-        return this.state.works.map(work => <AllWorks hideModal={this.props.hideModal} showModal={this.props.showModal} work={work} image={work.image_url}/>)
+        return this.state.works.map(work => <AllWorks deleteWork={this.deleteWork} hideModal={this.props.hideModal} showModal={this.props.showModal} work={work} image={work.image_url}/>)
     }
 
     renderAllNews = () =>{
-        return this.state.news.map(news => <AllNews hideModal={this.props.hideModal} showModal={this.props.showModal} news={news} title={news.title} description={news.description} image={news.image_url}/>)
+        return this.state.news.map(news => <AllNews deleteNews={this.deleteNews} hideModal={this.props.hideModal} showModal={this.props.showModal} news={news} title={news.title} description={news.description} image={news.image_url}/>)
     }
 
     renderAllAbout = () =>{
-        return this.state.about.map(about => <AllAbout hideModal={this.props.hideModal} showModal={this.props.showModal} about={about} title={about.title} description={about.description} description2={about.description2} description3={about.description3} image={about.image_url}/>)
+        return this.state.about.map(about => <AllAbout deleteAbout={this.deleteAbout} hideModal={this.props.hideModal} showModal={this.props.showModal} about={about} title={about.title} description={about.description} description2={about.description2} description3={about.description3} image={about.image_url}/>)
     }
 
     renderAllAfterCare = () =>{
-        return this.state.care.map(care => <AllAfterCare hideModal={this.props.hideModal} showModal={this.props.showModal} care={care} title={care.title} description={care.description} description2={care.description2} description3={care.description3}/>)
+        return this.state.care.map(care => <AllAfterCare deleteAfterCare={this.deleteAfterCare} hideModal={this.props.hideModal} showModal={this.props.showModal} care={care} title={care.title} description={care.description} description2={care.description2} description3={care.description3}/>)
     }
 
     renderAllContacts = () =>{
-        return this.state.contacts.map(contact => <AllContacts hideModal={this.props.hideModal} showModal={this.props.showModal} contact={contact} name={contact.name} description={contact.description} email={contact.email}/>)
+        return this.state.contacts.map(contact => <AllContacts deleteContacts={this.deleteContacts} hideModal={this.props.hideModal} showModal={this.props.showModal} contact={contact} name={contact.name} description={contact.description} email={contact.email}/>)
     }
 
     componentDidMount(){
@@ -68,6 +68,68 @@ class Dashboard extends React.Component {
         })) 
     }
 
+    renderAllWorks = () => {
+        API.getAllWorks()
+        .then(data => this.setState({
+            works: data.works
+        }))
+    }
+
+    renderEightWorks = () => {
+        API.getWorks()
+        .then(data => this.setState({
+            works:data.works
+        }))
+    }
+
+    renderAllNewsAdmin = () => {
+        API.getAllNews()
+        .then(data => this.setState({
+            news: data.news
+        }))
+    }
+
+    renderFourNews = () => {
+        API.getNews()
+        .then(data => this.setState({
+            news: data.news
+        }))
+    }
+    
+    deleteWork = (id) =>{
+        API.workDelete(id)
+            this.setState({
+                works: [...this.state.works].filter(work => work.id !== id)
+            })
+    }
+
+    deleteNews = (id) =>{
+        API.newsDelete(id)
+            this.setState({
+                news: [...this.state.news].filter(news => news.id !== id)
+            })
+    }
+
+    deleteAfterCare = (id) =>{
+        API.afterCareDelete(id)
+            this.setState({
+                care: [...this.state.care].filter(care => care.id !== id)
+            })
+    }
+
+    deleteAbout = (id) =>{
+        API.aboutDelete(id)
+            this.setState({
+                about: [...this.state.about].filter(about => about.id !== id)
+            })
+    }
+
+    deleteContacts = (id) =>{
+        API.contactsDelete(id)
+            this.setState({
+                contacts: [...this.state.contacts].filter(contact => contact.id !== id)
+            })
+    }
 
     render() { 
         return ( 
@@ -80,6 +142,9 @@ class Dashboard extends React.Component {
                     -
                     -
                     <Link to="/" onClick={this.props.signOut}>Log Out</Link>
+                    -
+                    -
+                    <Link to="/">Home</Link>
                     <div>
                         <h2 className="text-center">All Work</h2>
                         <table>
@@ -89,6 +154,8 @@ class Dashboard extends React.Component {
                             <th className="text-left">Delete</th>
                             {this.renderAllwork()}
                         </table>
+                        <button className="text-center btn btn-success" onClick={() => this.renderAllWorks()}>Show More</button>
+                        {(this.state.works.length > 8) ? <button className="text-center btn btn-success" onClick={() => this.renderEightWorks()}>Show Less</button> : null}
                     </div>
 
                     <div>
@@ -101,6 +168,8 @@ class Dashboard extends React.Component {
                             <th className="text-left">Delete</th>
                             {this.renderAllNews()}
                         </table>
+                        <button className="text-center btn btn-success" onClick={() => this.renderAllNewsAdmin()}>Show More</button>
+                        {(this.state.news.length > 4) ? <button className="text-center btn btn-success" onClick={() => this.renderFourNews()}>Show Less</button> : null}
                     </div>
 
                     <div>

@@ -14,7 +14,7 @@ class AllNews extends React.Component {
             </div>
             <div className="row">
               <div className="col-md-12 col-lg-12 text-center">
-                 <button className="btnn btn-1 btn-1c text-center m-right-75 m-top-25">Show More</button>
+                 <button onClick={() => this.props.showTwoMore()} className="btnn btn-1 btn-1c text-center m-right-75 m-top-25">Show More</button>
               </div>
             </div>
             

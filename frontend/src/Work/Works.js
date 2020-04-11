@@ -13,7 +13,7 @@ class Works extends React.Component {
             </div>
             <div className="row">
               <div className="col-md-12 col-lg-12 text-center">
-                 <button className="btnn btn-1w btn-1c text-center m-right-75 m-top-25">Show More</button>
+                 <button onClick={() => this.props.showFourMore()} className="btnn btn-1w btn-1c text-center m-right-75 m-top-25">Show More</button>
               </div>
             </div>
           </div>
