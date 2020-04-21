@@ -8,7 +8,7 @@ class Works extends React.Component {
             <h1 className="text-center mt-150 font-sacramento text-60">My Work</h1>
             <p className="text-center font-viadora">Our latest news for you to check out, i know that i looks awesome, just dont break my web page because i dont know what to write right now over here and i am getting stressed</p>
             <hr/>
-            <div class="row">
+            <div className="row">
                 {this.props.renderWorks()}
             </div>
             <div className="row">

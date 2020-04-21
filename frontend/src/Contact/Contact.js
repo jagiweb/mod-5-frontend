@@ -1,5 +1,4 @@
 import React from 'react'
-// import { Link } from 'react-router-dom';
 import GoogleMaps from './GoogleMaps';
 import API from '../API'
 
@@ -38,7 +37,7 @@ class Contact extends React.Component {
     render() { 
         return ( 
         <div id="contact" className="contact">
-            <div className="container mb-50">
+            <div className="container">
                 <h1 className="text-center mt-150 font-sacramento text-60">Do You Have Any Question?</h1>
                 <hr className="mb-50"/>
                 <div className="row">
@@ -77,22 +76,30 @@ class Contact extends React.Component {
                                 <br/>
                                 <textarea className="form-control" onChange={this.handleChange} row="4" cols="50" placeholder="What would you like to ask?" name="description" type="text"/>
                                 <br/>
-                                <button className="btn btn-lg btn-primary text-center" type="submit">Submit</button>
+                                <button className="btnn btn-1w btn-1c text-center m-right-75 m-top-25" type="submit">Submit</button>
                             </div>
                         </form>
                     </div>
+                    
                 </div>
-                
-                {/* <Link onClick={this.props.showModal} to="/">Contact Form</Link> */}
                 <hr/>
             </div>
-            <div>
-                <div className="row">
-                    <div id="map" className="col-lg-12 col-md-12">
+                
+            
+                <div style={{ height: 350, 
+                    width: '100%', 
+                    display: 'flex', 
+                    flexFlow: 'row nowrap', 
+                    justifyContent: 'center', 
+                    padding: 0 }} id="map" className="">
+                    <div style={{
+                        width: "100%",
+                        marginLeft: 0,
+                        }}>
                         <GoogleMaps/>
                     </div>
                 </div>
-            </div>
+            
         </div>
          );
     }

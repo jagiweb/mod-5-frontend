@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 class Footer extends React.Component {
     constructor() {
@@ -17,22 +18,22 @@ class Footer extends React.Component {
         <h6 className="mb-0">Get connected with us on social networks!</h6>
       </div>
       <div className="col-md-6 col-lg-7 text-center text-md-right">
-        <a className="fb-ic">
+        <Link className="fb-ic">
           <i className="fab fa-facebook-f white-text mr-4"> </i>
-        </a>
-        <a className="tw-ic">
+        </Link>
+        <Link className="tw-ic">
           <i className="fab fa-twitter white-text mr-4"> </i>
-        </a>
-        <a className="gplus-ic">
+        </Link>
+        <Link className="gplus-ic">
           <i className="fab fa-google-plus-g white-text mr-4"> </i>
-        </a>
+        </Link>
 
-        <a className="li-ic">
+        <Link className="li-ic">
           <i className="fab fa-linkedin-in white-text mr-4"> </i>
-        </a>
-        <a className="ins-ic">
+        </Link>
+        <Link className="ins-ic">
           <i className="fab fa-instagram white-text"> </i>
-        </a>
+        </Link>
 
       </div>
 
@@ -52,32 +53,32 @@ class Footer extends React.Component {
       <h6 className="text-uppercase font-weight-bold">Products</h6>
       <hr className="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" />
       <p>
-        <a className="dark-grey-text" href="#!">MDBootstrap</a>
+        <Link className="dark-grey-text" href="#!">MDBootstrap</Link>
       </p>
       <p>
-        <a className="dark-grey-text" href="#!">MDWordPress</a>
+        <Link className="dark-grey-text" href="#!">MDWordPress</Link>
       </p>
       <p>
-        <a className="dark-grey-text" href="#!">BrandFlow</a>
+        <Link className="dark-grey-text" href="#!">BrandFlow</Link>
       </p>
       <p>
-        <a className="dark-grey-text" href="#!">Bootstrap Angular</a>
+        <Link className="dark-grey-text" href="#!">Bootstrap Angular</Link>
       </p>
     </div>
     <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
       <h6 className="text-uppercase font-weight-bold">Useful links</h6>
       <hr className="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" />
       <p>
-        <a className="dark-grey-text" href="#!">Your Account</a>
+        <Link className="dark-grey-text" href="#!">Your Account</Link>
       </p>
       <p>
-        <a className="dark-grey-text" href="#!">Become an Affiliate</a>
+        <Link className="dark-grey-text" href="#!">Become an Affiliate</Link>
       </p>
       <p>
-        <a className="dark-grey-text" href="#!">Shipping Rates</a>
+        <Link className="dark-grey-text" href="#!">Shipping Rates</Link>
       </p>
       <p>
-        <a className="dark-grey-text" href="#!">Help</a>
+        <Link className="dark-grey-text" href="#!">Help</Link>
       </p>
     </div>
     <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
@@ -95,7 +96,7 @@ class Footer extends React.Component {
   </div>
 </div>
 <div className="footer-copyright text-center text-black-50 py-3">© 2020 Copyright:
-  <a className="dark-grey-text" href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+  <Link className="dark-grey-text" href="https://mdbootstrap.com/"> MDBootstrap.com</Link>
 </div>
 
 </footer>

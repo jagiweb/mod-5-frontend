@@ -1,12 +1,16 @@
 import React from 'react'
 import API from '../API'
-import { Link } from 'react-router-dom'
+
 
 class EditAfterCare extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            care: null
+            care: null,
+            title: "",
+            description: "",
+            description2: "",
+            description3: ""
          }
     }
 
@@ -22,38 +26,42 @@ class EditAfterCare extends React.Component {
       }
 
     componentDidMount(){
-        const URL = `http://localhost:3001/admin/edit-aftercare/${this.props.match.params.id}`
+        const URL = `http://localhost:3001/admin/edit-aftercare/${this.props.id}`
         fetch(URL)
         .then(resp => resp.json())
         .then(data => this.setState({
-            care: data.care
+            care: data.care,
+            title: data.care.title,
+            description: data.care.description,
+            description2: data.care.description2,
+            description3: data.care.description3
         }))
     }
     render() { 
-        console.log(this.state.care)
+        const {care, title, description, description2, description3} = this.state
+        console.log(care)
         return ( 
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <br/>
                     <label>Title: </label>
                     <br/>
-                    <input onChange={this.handleChange} name="title" type="text"/>
+                    <input value={title} onChange={this.handleChange} name="title" type="text"/>
                     <br/>
                     <label>Description: </label>
                     <br/>
-                    <textarea onChange={this.handleChange} row="4" cols="50" name="description" type="text"/>
+                    <textarea value={description} onChange={this.handleChange} row="4" cols="50" name="description" type="text"/>
                     <br/>
                     <label>Description2: </label>
                     <br/>
-                    <textarea onChange={this.handleChange} row="4" cols="50" name="description2" type="text"/>
+                    <textarea value={description2} onChange={this.handleChange} row="4" cols="50" name="description2" type="text"/>
                     <br/>
                     <label>Description3: </label>
                     <br/>
-                    <textarea onChange={this.handleChange} row="4" cols="50" name="description3" type="text"/>
+                    <textarea value={description3} onChange={this.handleChange} row="4" cols="50" name="description3" type="text"/>
                     <br/>
                     <button type="submit">Submit</button>
                 </form>
-                <Link to="/admin">Close</Link>
             </div>
          );
     }

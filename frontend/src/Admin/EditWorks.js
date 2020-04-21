@@ -1,6 +1,5 @@
 import React from 'react'
 import API from '../API'
-import { Link } from 'react-router-dom'
 
 class EditNews extends React.Component {
     constructor() {
@@ -27,7 +26,7 @@ class EditNews extends React.Component {
       }
 
     componentDidMount(){
-        const URL = `http://localhost:3001/admin/edit-works/${this.props.match.params.id}`
+        const URL = `http://localhost:3001/admin/edit-works/${this.props.id}`
         fetch(URL)
         .then(resp => resp.json())
         .then(data => this.setState({
@@ -48,7 +47,6 @@ class EditNews extends React.Component {
                     <input onChange={this.handleChange} name="title" type="text"/>
                     <br/>
                     <button type="submit">Submit</button>
-                    <Link to="/admin">Close</Link>
                 </form>
             </div>
          );

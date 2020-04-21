@@ -9,8 +9,7 @@ class NavBar extends React.Component {
     }
     render() { 
         return ( 
-            <div id="main-nav">
-                    <div>
+
                     <nav className="navbar scrolling-navbar fixed-top navbar-expand-lg navbar-light">
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
@@ -42,8 +41,7 @@ class NavBar extends React.Component {
                             </ul>
                         </div>
                     </nav>                   
-                </div>
-            </div>
+
          );
     }
 }

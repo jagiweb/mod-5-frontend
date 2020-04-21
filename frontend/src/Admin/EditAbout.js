@@ -1,6 +1,5 @@
 import React from 'react'
 import API from '../API'
-import { Link } from 'react-router-dom'
 
 class EditAbout extends React.Component {
     constructor() {
@@ -32,44 +31,47 @@ class EditAbout extends React.Component {
       }
 
     componentDidMount(){
-        const URL = `http://localhost:3001/admin/edit-about/${this.props.match.params.id}`
+        const URL = `http://localhost:3001/admin/edit-about/${this.props.id}`
         fetch(URL)
         .then(resp => resp.json())
         .then(data => this.setState({
             about: data.about,
+            image_url: data.image_url,
             title: data.about.title,
             description: data.about.description,
             description2: data.about.description2,
             description3: data.about.description3
         }))
     }
+
     render() { 
+       const {title, description, description2, description3} = this.state
+       
         return ( 
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>Upload Image:</label>
                     <br/>
-                    <input onChange={this.handleChange} accept="image/*" name="about_image" type="file"/>
+                    <input onChange={this.handleChange} accept="image/*" name="about_image" type="file" required/>
                     <br/>
                     <label>Title: </label>
                     <br/>
-                    <input onChange={this.handleChange} name="title" type="text"/>
+                    <input value={title} onChange={this.handleChange} name="title" type="text"/>
                     <br/>
                     <label>Description: </label>
                     <br/>
-                    <textarea onChange={this.handleChange} row="4" cols="50" name="description" type="text"/>
+                    <textarea value={description} onChange={this.handleChange} row="4" cols="50" name="description" type="text"/>
                     <br/>
                     <label>Description2: </label>
                     <br/>
-                    <textarea onChange={this.handleChange} row="4" cols="50" name="description2" type="text"/>
+                    <textarea value={description2} onChange={this.handleChange} row="4" cols="50" name="description2" type="text"/>
                     <br/>
                     <label>Description3: </label>
                     <br/>
-                    <textarea onChange={this.handleChange} row="4" cols="50" name="description3" type="text"/>
+                    <textarea value={description3} onChange={this.handleChange} row="4" cols="50" name="description3" type="text"/>
                     <br/>
                     <button type="submit">Submit</button>
                 </form>
-                <Link to="/admin" onClick={this.props.handleClose}>Close</Link>
             </div>
          );
     }

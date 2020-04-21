@@ -7,11 +7,11 @@ class Intro extends React.Component {
             
             <div className="container">
                 <div className="show-mobile"></div>
-                <section class="hide-mobile rw-wrapper">
-                    <h2 class="rw-sentence m-top">
+                <section className="hide-mobile rw-wrapper">
+                    <h2 className="rw-sentence m-top">
                         {/* <span>Welcome to</span> */}
                         <span className="font-sacramento">I am </span>
-                        <div class="font-sacramento rw-words rw-words-1">
+                        <div className="font-sacramento rw-words rw-words-1">
                             <span>Sharnie Pilar</span>
                             <span>a designer</span>
                             <span>an Artist</span>

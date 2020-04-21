@@ -9,10 +9,10 @@ function News({news}) {
     return ( 
           <div>
             <div className="col-md-4 col-lg-4">
-              <ul class="grid cs-style-2">
+              <ul className="grid cs-style-2">
                   <li>
                     <figure onClick={handleShow} className="works-img"> 
-                        <img key={news.id} alt="" src={news.image_url}/>
+                        <img alt="" src={news.image_url}/>
                       <figcaption>
                         <p>{news.title}</p>
                         <span></span>

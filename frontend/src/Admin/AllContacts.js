@@ -10,8 +10,8 @@ class AllContacts extends React.Component {
                     <td><p>{name}</p></td>
                     <td><p>{email}</p></td>
                     <td><p>{telephone}</p></td>
-                    <td><p>{description}</p></td>
-                    <td><button onClick={() => this.props.deleteContacts(contact.id)}>Delete</button></td>
+                    <td><p>{description.substring(0,120)}</p></td>
+                    <td><button className="btn btn-danger" onClick={() => this.props.deleteContacts(contact.id)}><i class="fas fa-trash"></i></button></td>
                 </tr>        
          );
     }

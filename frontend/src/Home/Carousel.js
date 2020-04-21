@@ -11,36 +11,36 @@ class Carousel extends React.Component {
             <div>
 
             
-            <div id="background-carousel" class="carousel slide" data-ride="carousel">
+            <div id="background-carousel" className="carousel slide" data-ride="carousel">
                     <div id="myCarousel">
-                        <div class="carousel-inner">
+                        <div className="carousel-inner">
                             <div className="carousel-item active">
                                 <div className="view">
-                                    <img class="d-block w-100 ww-100" src="https://www.radissonred.com/wp-content/uploads/2016/07/shutterstock_420858511.jpg" alt="First slide"/>
-                                    <div class="mask rgba-black-light"></div>
+                                    <img className="d-block img-fluid  w-100 ww-100" src="https://www.radissonred.com/wp-content/uploads/2016/07/shutterstock_420858511.jpg" alt="First slide"/>
+                                    <div className="mask rgba-black-light"></div>
                                 </div>
-                                <div class="carousel-caption">
-                                    <h3 class="h3-responsive">Light mask</h3>
+                                <div className="carousel-caption">
+                                    <h3 className="h3-responsive">Light mask</h3>
                                     <p>First text</p>
                                 </div>
                             </div>
                             <div className="carousel-item">
                                 <div className="view">
-                                    <img class="d-block w-100 ww-100" src="https://media.timeout.com/images/105233178/image.jpg" alt="Second slide"/>
-                                    <div class="mask rgba-black-light"></div>
+                                    <img className="d-block img-fluid  w-100 ww-100" src="https://media.timeout.com/images/105233178/image.jpg" alt="Second slide"/>
+                                    <div className="mask rgba-black-light"></div>
                                 </div>
-                                <div class="carousel-caption">
-                                    <h3 class="h3-responsive">Light mask</h3>
+                                <div className="carousel-caption">
+                                    <h3 className="h3-responsive">Light mask</h3>
                                     <p>First text</p>
                                 </div>
                             </div>
                             <div className="carousel-item">
                                 <div className="view">
-                                    <img class="d-block w-100 ww-100" src="https://i2-prod.getreading.co.uk/incoming/article17005557.ece/ALTERNATES/s1200b/0_Tattoo-generic.jpg" alt="Second slide"/>
-                                    <div class="mask rgba-black-light"></div>
+                                    <img className="d-block img-fluid  w-100 ww-100" src="https://i2-prod.getreading.co.uk/incoming/article17005557.ece/ALTERNATES/s1200b/0_Tattoo-generic.jpg" alt="Second slide"/>
+                                    <div className="mask rgba-black-light"></div>
                                 </div>
-                                <div class="carousel-caption">
-                                    <h3 class="h3-responsive">Light mask</h3>
+                                <div className="carousel-caption">
+                                    <h3 className="h3-responsive">Light mask</h3>
                                     <p>First text</p>
                                 </div>
                             </div>

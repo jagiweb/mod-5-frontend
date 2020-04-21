@@ -9,13 +9,17 @@ class GoogleMaps extends React.Component {
     render() { 
         const styles = require('./GoogleMapStyles.json')
         return ( 
-            <Map 
-            zoom={10}
-            initialCenter={{
-            lat: 51.068378,
-            lng: -0.3552285
-            }}
-            google={this.props.google} styles={styles}><Marker/></Map>
+            <div>
+                <Map 
+                zoom={10}
+                initialCenter={{
+                lat: 51.068378,
+                lng: -0.3552285
+                }}
+                containerStyle={{ width: '100%', height: '46%' }}
+                google={this.props.google} styles={styles}><Marker/></Map>
+            </div>
+            
             
          );
     }

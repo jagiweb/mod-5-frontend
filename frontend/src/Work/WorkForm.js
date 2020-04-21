@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import API from '../API'
 
 
@@ -17,6 +16,7 @@ class WorkForm extends React.Component {
         this.setState({
           [e.target.name]: e.target.value
         })
+        
       }
     
       handleSubmit = (e) => {
@@ -28,27 +28,33 @@ class WorkForm extends React.Component {
           .then(data => this.setState({
             work_image: data
           }))
+          e.target.reset()
       }
     
       render() { 
         
         return ( 
             
-          <div className="modal-main modal--change">
-            <h3>Create Work</h3>
+          <div>
+            <h3 className="text-center title-forms">Upload Work</h3>
             <form onSubmit={this.handleSubmit}>
-                <label>Upload Image:</label>
-                <br/>
-                <input onChange={this.handleChange} accept="image/*" name="work_image" type="file"/>
-                <br/>
-                <label>Title: </label>
-                <br/>
-                <input onChange={this.handleChange} name="title" type="text"/>
-                <br/>
-                <button type="submit">Submit</button>
-                {/* <div><img alt="" src={this.state.work_image.image_url}/></div> */}
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Image</span>
+                  </div>
+                  <input accept="image/*" name="work_image" type="file" required class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+                </div>
+                
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Title (Optional)</span>
+                  </div>
+                  <input onChange={this.handleChange} name="title" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+                </div>
+
+                <button className="btn btn-success text-center" type="submit">Submit</button>
             </form>
-            <Link to="/admin" onClick={this.props.handleClose}>Close</Link>
+            
 
           </div>
          );

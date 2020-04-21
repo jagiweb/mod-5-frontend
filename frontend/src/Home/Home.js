@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Carousel from './Carousel'
 import Intro from './Intro'
 import NavBar from '../NavBar/NavBar'
-import AboutMe from '../About/AboutMe'
+import AllAboutMe from '../About/AllAboutMe'
 import AllNews from '../News/AllNews'
 import Works from '../Work/Works'
 // import AfterCare from '../After-Care/AfterCare'
@@ -22,7 +22,7 @@ class Home extends React.Component {
                 <NavBar/>
                 <Carousel/>
                 <Intro/>
-                <AboutMe/>
+                <AllAboutMe renderAbout={this.props.renderAbout}/>
                 <AllNews allNews={this.props.allNews} showTwoMore={this.props.showTwoMore} renderNews={this.props.renderNews}/>
                 <Works showFourMore={this.props.showFourMore} renderWorks={this.props.renderWorks}/>
                 {/* <AfterCare/> */}

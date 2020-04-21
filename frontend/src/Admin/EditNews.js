@@ -1,11 +1,13 @@
 import React from 'react'
 import API from '../API'
-import { Link } from 'react-router-dom'
+
 class EditNews extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            news: null
+            news: null,
+            title: "",
+            description: ""
          }
     }
 
@@ -26,14 +28,17 @@ class EditNews extends React.Component {
       }
 
     componentDidMount(){
-        const URL = `http://localhost:3001/admin/edit-news/${this.props.match.params.id}`
+        const URL = `http://localhost:3001/admin/edit-news/${this.props.id}`
         fetch(URL)
         .then(resp => resp.json())
         .then(data => this.setState({
-            news: data.news
+            news: data.news,
+            title: data.news.title,
+            description: data.news.description
         }))
     }
     render() { 
+        const {title, description} = this.state
         return ( 
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -43,14 +48,13 @@ class EditNews extends React.Component {
                     <br/>
                     <label>Title: </label>
                     <br/>
-                    <input onChange={this.handleChange} name="title" type="text"/>
+                    <input value={title} onChange={this.handleChange} name="title" type="text"/>
                     <br/>
                     <label>Description: </label>
                     <br/>
-                    <textarea onChange={this.handleChange} row="4" cols="50" name="description" type="text"/>
+                    <textarea value={description} onChange={this.handleChange} row="4" cols="50" name="description" type="text"/>
                     <br/>
                     <button type="submit">Submit</button>
-                    <Link to="/admin">Close</Link>
                 </form>
             </div>
          );
